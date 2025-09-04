@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 include "db.php";
 
-// Parse POST data
+
 $data = json_decode(file_get_contents("php://input"), true);
 
 $customerName = $conn->real_escape_string($data['customerName']);
@@ -10,7 +10,7 @@ $latitude     = (float)$data['latitude'];
 $longitude    = (float)$data['longitude'];
 $productName  = $conn->real_escape_string($data['product']);
 
-// Step 1: Ensure customer exists or insert new
+
 $customerCheck = $conn->query("SELECT id FROM customers WHERE name='$customerName'");
 if ($customerCheck->num_rows > 0) {
     $customer = $customerCheck->fetch_assoc();
@@ -20,7 +20,7 @@ if ($customerCheck->num_rows > 0) {
     $customerId = $conn->insert_id;
 }
 
-// Step 2: Find product ID
+
 $productCheck = $conn->query("SELECT id FROM products WHERE name='$productName'");
 if ($productCheck->num_rows == 0) {
     echo json_encode(["status" => "error", "message" => "Product not found"]);
@@ -29,7 +29,7 @@ if ($productCheck->num_rows == 0) {
 $product = $productCheck->fetch_assoc();
 $productId = $product['id'];
 
-// Step 3: Find nearest seller with that product
+
 $query = "
     SELECT s.id, s.name, s.latitude, s.longitude,
     (6371 * acos(
@@ -56,7 +56,7 @@ $sellerId = $seller['id'];
 $sellerName = $seller['name'];
 $distance = round($seller['distance'], 2);
 
-// Step 4: Insert order
+
 $orderId = "ORD-" . time() . "-" . rand(100, 999);
 
 $conn->query("
@@ -64,7 +64,7 @@ $conn->query("
     VALUES ('$orderId', $customerId, $productId, $sellerId, $distance)
 ");
 
-// Step 5: Return response
+
 $response = [
     "status" => "success",
     "orderId" => $orderId,

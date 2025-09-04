@@ -1,4 +1,4 @@
-// DOM Elements
+
 const mobileToggle = document.getElementById('mobileToggle');
 const sidebar = document.getElementById('sidebar');
 const sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -6,7 +6,7 @@ const orderForm = document.getElementById('orderForm');
 const headerTitle = document.querySelector('.header-title');
 const submitBtn = document.querySelector('.submit-btn');
 
-// Sample data for sellers
+
 const sellerData = [
     { name: 'TechHub Electronics', lat: 26.9200, lng: 75.7900, products: ['laptop', 'smartphone', 'tablet'] },
     { name: 'Digital World', lat: 26.9100, lng: 75.7800, products: ['headphones', 'smartwatch', 'smartphone'] },
@@ -14,7 +14,7 @@ const sellerData = [
     { name: 'Electronics Plus', lat: 26.9180, lng: 75.7920, products: ['smartphone', 'smartwatch', 'tablet'] }
 ];
 
-// Initialize application
+
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
@@ -28,7 +28,7 @@ function initializeApp() {
     setupEntranceAnimations();
 }
 
-// Mobile Navigation
+
 function setupMobileNavigation() {
     mobileToggle.addEventListener('click', toggleSidebar);
     sidebarOverlay.addEventListener('click', toggleSidebar);
@@ -39,7 +39,7 @@ function toggleSidebar() {
     sidebarOverlay.classList.toggle('active');
 }
 
-// Navigation Items
+
 function setupNavigationItems() {
     const navItems = document.querySelectorAll('.nav-item');
     
@@ -47,20 +47,19 @@ function setupNavigationItems() {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Close sidebar on mobile after selection
+          
             if (window.innerWidth <= 768) {
                 toggleSidebar();
             }
             
-            // Update active state
+           
             navItems.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
-            
-            // Update header title based on selected item
+          
             const itemText = item.textContent.trim().replace(/\d+/g, '').trim();
             headerTitle.textContent = itemText;
             
-            // Handle different navigation actions
+          
             handleNavigationAction(itemText);
         });
     });
@@ -91,7 +90,7 @@ function handleNavigationAction(itemText) {
 }
 
 function showDashboardContent() {
-    // Dashboard is already shown by default
+   
     console.log('Dashboard view activated');
 }
 
@@ -115,23 +114,22 @@ function showComingSoon(feature) {
     console.log(`${feature} feature coming soon`);
 }
 
-// Form Interactions
 function setupFormInteractions() {
     const formInputs = document.querySelectorAll('.form-input');
     
     formInputs.forEach(input => {
-        // Focus effects
+     
         input.addEventListener('focus', function() {
             this.parentElement.style.transform = 'translateY(-3px) scale(1.02)';
             this.parentElement.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         });
         
-        // Blur effects
+       
         input.addEventListener('blur', function() {
             this.parentElement.style.transform = 'translateY(0) scale(1)';
         });
         
-        // Input validation
+     
         input.addEventListener('input', validateInput);
     });
 }
@@ -140,7 +138,7 @@ function validateInput(e) {
     const input = e.target;
     const value = input.value.trim();
     
-    // Remove previous validation classes
+    
     input.classList.remove('valid', 'invalid');
     
     if (input.type === 'text' && input.id === 'customerName') {
@@ -162,7 +160,7 @@ function validateInput(e) {
     }
 }
 
-// Form Submission
+
 function setupFormSubmission() {
     orderForm.addEventListener('submit', handleFormSubmission);
 }
@@ -176,16 +174,16 @@ function handleFormSubmission(e) {
         product: document.getElementById('productSelect').value
     };
     
-    // Show loading state
+    
     setLoadingState(true);
     
-    // Validate form
+    
     if (!validateForm(formData)) {
         setLoadingState(false);
         return;
     }
     
-    // Simulate API call
+    
     setTimeout(() => {
         processOrder(formData);
         setLoadingState(false);
@@ -213,7 +211,7 @@ function validateForm(formData) {
 }
 
 function processOrder(formData) {
-    // Find nearest seller (simplified logic)
+   
     const availableSellers = sellerData.filter(seller => 
         seller.products.includes(formData.product)
     );
@@ -223,16 +221,16 @@ function processOrder(formData) {
         return;
     }
     
-    const nearestSeller = availableSellers[0]; // Simplified - just take first available
+    const nearestSeller = availableSellers[0]; 
     const orderId = generateOrderId();
     
-    // Show success message
+   
     showNotification('Order placed successfully! Redirecting...', 'success');
     
-    // Update stats (simulate)
+    
     updateOrderStats();
     
-    // Reset form
+   
     orderForm.reset();
 
     console.log('Order processed:', {
@@ -243,7 +241,7 @@ function processOrder(formData) {
         seller: nearestSeller.name
     });
 
-    // ✅ Redirect to confirmation page with details
+    
     const params = new URLSearchParams({
         orderId,
         customerName: formData.customerName,
@@ -254,7 +252,7 @@ function processOrder(formData) {
 
     setTimeout(() => {
         window.location.href = `confirmation.html?${params.toString()}`;
-    }, 1500); // delay for notification
+    }, 1500); 
 }
 
 function generateOrderId() {
@@ -271,21 +269,21 @@ function setLoadingState(loading) {
     }
 }
 
-// Notifications
+
 function showNotification(message, type = 'info') {
-    // Create notification element if it doesn't exist
+  
     let notification = document.getElementById('notification');
     if (!notification) {
         notification = createNotificationElement();
         document.body.appendChild(notification);
     }
     
-    // Update notification content
+    
     notification.className = `notification ${type}`;
     notification.textContent = message;
     notification.classList.add('show');
     
-    // Auto hide after 4 seconds
+   
     setTimeout(() => {
         notification.classList.remove('show');
     }, 4000);
@@ -296,7 +294,7 @@ function createNotificationElement() {
     notification.id = 'notification';
     notification.className = 'notification';
     
-    // Add styles dynamically
+   
     const style = document.createElement('style');
     style.textContent = `
         .notification {
@@ -333,7 +331,7 @@ function createNotificationElement() {
     return notification;
 }
 
-// Stats Animation
+
 function animateStatsCards() {
     setTimeout(() => {
         const statCards = document.querySelectorAll('.stat-card');
@@ -352,7 +350,7 @@ function updateOrderStats() {
         const currentValue = parseInt(totalOrdersElement.textContent);
         totalOrdersElement.textContent = currentValue + 1;
         
-        // Add animation effect
+       
         totalOrdersElement.style.transform = 'scale(1.2)';
         totalOrdersElement.style.color = '#10b981';
         setTimeout(() => {
@@ -362,16 +360,16 @@ function updateOrderStats() {
     }
 }
 
-// Entrance Animations
+
 function setupEntranceAnimations() {
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
     
-    // Initial state
+  
     sidebar.style.transform = 'translateX(-100%)';
     mainContent.style.opacity = '0';
     
-    // Animate in
+    
     setTimeout(() => {
         sidebar.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
         sidebar.style.transform = 'translateX(0)';
@@ -383,9 +381,9 @@ function setupEntranceAnimations() {
     }, 200);
 }
 
-// Utility Functions
+
 function calculateDistance(lat1, lng1, lat2, lng2) {
-    const R = 6371; // Radius of Earth in kilometers
+    const R = 6371; 
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLng = (lng2 - lng1) * Math.PI / 180;
     const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -395,7 +393,7 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
     return R * c;
 }
 
-// Add CSS for form validation states
+
 const validationStyles = document.createElement('style');
 validationStyles.textContent = `
     .form-input.valid {
@@ -417,7 +415,7 @@ validationStyles.textContent = `
 `;
 document.head.appendChild(validationStyles);
 
-// Handle window resize for mobile responsiveness
+
 window.addEventListener('resize', function() {
     if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
         sidebar.classList.remove('open');
@@ -425,5 +423,5 @@ window.addEventListener('resize', function() {
     }
 });
 
-// Add smooth scroll behavior
+
 document.documentElement.style.scrollBehavior = 'smooth';

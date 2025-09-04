@@ -1,4 +1,4 @@
-// DOM Elements
+
 const successIcon = document.getElementById('successIcon');
 const orderIdElement = document.getElementById('orderId');
 const orderDateElement = document.getElementById('orderDate');
@@ -14,7 +14,7 @@ const orderTimeElement = document.getElementById('orderTime');
 const trackBtn = document.getElementById('trackBtn');
 const backBtn = document.getElementById('backBtn');
 
-// Sample seller data for matching
+
 const sellerData = {
     'laptop': { name: 'TechHub Electronics', location: 'Manhattan, NY', distance: '1.2 KM', deliveryTime: '30-45 mins' },
     'smartphone': { name: 'Digital World', location: 'Brooklyn, NY', distance: '2.1 KM', deliveryTime: '40-60 mins' },
@@ -23,7 +23,7 @@ const sellerData = {
     'smartwatch': { name: 'Smart Tech Hub', location: 'Staten Island, NY', distance: '2.7 KM', deliveryTime: '45-65 mins' }
 };
 
-// Product categories
+
 const productCategories = {
     'laptop': 'Electronics',
     'smartphone': 'Electronics',
@@ -32,7 +32,7 @@ const productCategories = {
     'smartwatch': 'Wearables'
 };
 
-// Initialize page
+
 document.addEventListener('DOMContentLoaded', function() {
     initializePage();
 });
@@ -45,10 +45,10 @@ function initializePage() {
 }
 
 function loadOrderDetails() {
-    // Get URL parameters
+  
     const urlParams = new URLSearchParams(window.location.search);
     
-    // Extract order data
+    
     const orderData = {
         orderId: urlParams.get('orderId') || generateOrderId(),
         customerName: urlParams.get('customerName') || 'John Doe',
@@ -59,12 +59,12 @@ function loadOrderDetails() {
         distance: urlParams.get('distance')
     };
     
-    // Update DOM elements
+   
     updateOrderInformation(orderData);
 }
 
 function updateOrderInformation(orderData) {
-    // Order information
+    
     orderIdElement.textContent = '#' + orderData.orderId;
     orderDateElement.textContent = new Date().toLocaleDateString('en-US', { 
         year: 'numeric', 
@@ -72,18 +72,17 @@ function updateOrderInformation(orderData) {
         day: 'numeric' 
     });
     
-    // Customer details
+   
     customerNameElement.textContent = orderData.customerName;
     customerLocationElement.textContent = orderData.customerLocation;
     
-    // Product information
+   
     const productName = orderData.product.charAt(0).toUpperCase() + orderData.product.slice(1);
     productNameElement.textContent = productName;
     productCategoryElement.textContent = productCategories[orderData.product] || 'General';
     
-    // Seller information (use provided data or fallback to sample data)
-    // Seller information (use provided data or fallback to sample data)
-const randomDistance = (Math.random() * 4 + 1).toFixed(1); // 1.0–5.0 km
+ 
+const randomDistance = (Math.random() * 4 + 1).toFixed(1); 
 
 const sellerInfo = orderData.sellerName ? {
     name: orderData.sellerName,
@@ -101,7 +100,7 @@ const sellerInfo = orderData.sellerName ? {
     distanceElement.textContent = sellerInfo.distance;
     deliveryTimeElement.textContent = sellerInfo.deliveryTime;
     
-    // Order time
+    
     orderTimeElement.textContent = new Date().toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit'
@@ -115,7 +114,7 @@ function generateOrderId() {
 }
 
 function calculateDeliveryTime(distance) {
-    // Simple calculation: 15 minutes base + 10 minutes per km
+  
     const baseTime = 15;
     const additionalTime = distance * 10;
     const totalMinutes = Math.ceil(baseTime + additionalTime);
@@ -127,12 +126,12 @@ function calculateDeliveryTime(distance) {
 }
 
 function setupAnimations() {
-    // Success icon animation
+  
     setTimeout(() => {
         successIcon.classList.add('animate');
     }, 500);
 
-    // Fade in text elements
+ 
     const textElements = document.querySelectorAll('.fade-in-text');
     textElements.forEach((element, index) => {
         setTimeout(() => {
@@ -140,7 +139,7 @@ function setupAnimations() {
         }, 800 + (index * 200));
     });
 
-    // Fade in sections with stagger
+    
     const sections = document.querySelectorAll('.fade-in-section');
     sections.forEach((section, index) => {
         setTimeout(() => {
@@ -150,7 +149,7 @@ function setupAnimations() {
 }
 
 function setupEventListeners() {
-    // Track button
+   
     trackBtn.addEventListener('click', function() {
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
@@ -159,7 +158,7 @@ function setupEventListeners() {
         }, 150);
     });
 
-    // Back button
+  
     backBtn.addEventListener('click', function() {
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
@@ -167,7 +166,7 @@ function setupEventListeners() {
         }, 150);
     });
 
-    // Add hover effects for buttons
+   
     [trackBtn, backBtn].forEach(btn => {
         btn.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px)';
@@ -180,7 +179,7 @@ function setupEventListeners() {
 }
 
 function startStatusTimeline() {
-    // Simulate status updates
+  
     setTimeout(() => {
         updateTimelineStatus(1, 'Processing');
     }, 5000);
@@ -196,20 +195,19 @@ function updateTimelineStatus(stepIndex, status) {
     if (timelineItems[stepIndex]) {
         timelineItems[stepIndex].classList.add('active');
         
-        // Update time
+        
         const timeElement = timelineItems[stepIndex].querySelector('small');
         timeElement.textContent = new Date().toLocaleTimeString('en-US', {
             hour: '2-digit',
             minute: '2-digit'
         });
-        
-        // Show notification
+       
         showNotification(`Order status updated: ${status}`, 'info');
     }
 }
 
 function showTrackingModal() {
-    // Create modal for tracking information
+   
     const modal = document.createElement('div');
     modal.className = 'tracking-modal';
     modal.innerHTML = `
@@ -247,7 +245,7 @@ function showTrackingModal() {
         </div>
     `;
     
-    // Add modal styles
+  
     const modalStyles = `
         .tracking-modal {
             position: fixed;
@@ -355,14 +353,14 @@ function showTrackingModal() {
         }
     `;
     
-    // Add styles to document
+    
     const styleElement = document.createElement('style');
     styleElement.textContent = modalStyles;
     document.head.appendChild(styleElement);
     
     document.body.appendChild(modal);
     
-    // Close modal functionality
+   
     const closeModal = () => {
         modal.style.animation = 'modalSlideUp 0.3s ease reverse';
         setTimeout(() => {
@@ -376,7 +374,7 @@ function showTrackingModal() {
 }
 
 function goBackToOrder() {
-    // Add page transition effect
+  
     document.body.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     document.body.style.opacity = '0';
     document.body.style.transform = 'scale(0.98)';
@@ -387,14 +385,14 @@ function goBackToOrder() {
 }
 
 function showNotification(message, type = 'info') {
-    // Create notification if it doesn't exist
+    
     let notification = document.getElementById('notification');
     if (!notification) {
         notification = document.createElement('div');
         notification.id = 'notification';
         notification.className = 'notification';
         
-        // Add notification styles
+      
         const notificationStyles = `
             .notification {
                 position: fixed;
@@ -433,18 +431,18 @@ function showNotification(message, type = 'info') {
         document.body.appendChild(notification);
     }
     
-    // Update notification
+
     notification.className = `notification ${type}`;
     notification.textContent = message;
     notification.classList.add('show');
     
-    // Auto hide
+    
     setTimeout(() => {
         notification.classList.remove('show');
     }, 4000);
 }
 
-// Add page entrance animation
+
 window.addEventListener('load', function() {
     document.body.style.opacity = '0';
     document.body.style.transform = 'scale(0.95)';
@@ -456,10 +454,10 @@ window.addEventListener('load', function() {
     }, 100);
 });
 
-// Handle browser back button
+
 window.addEventListener('popstate', function() {
     goBackToOrder();
 });
 
-// Add smooth scrolling
+
 document.documentElement.style.scrollBehavior = 'smooth';

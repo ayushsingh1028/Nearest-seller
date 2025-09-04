@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";       // Change if hosted elsewhere
-$user = "root";            // Your DB username
-$pass = "Ayushsingh@74";                // Your DB password
-$db   = "nearest_seller";  // Your DB name
+$host = "localhost";      
+$user = "root";            
+$pass = "Ayushsingh@74";                
+$db   = "nearest_seller";  
 
 $conn = new mysqli($host, $user, $pass, $db);
 
