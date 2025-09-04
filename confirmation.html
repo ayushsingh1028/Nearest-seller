@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Nearest Seller App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+        <div class="gradient-orb orb1"></div>
+        <div class="gradient-orb orb2"></div>
+        <div class="gradient-orb orb3"></div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store logo-icon"></i>
+                <h2>NearSeller</h2>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <span>Place Order</span>
+                    <div class="nav-underline"></div>
+                </a>
+                <a href="#" class="nav-link">
+                    <span>Admin</span>
+                    <div class="nav-underline"></div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="confirmation-card" id="confirmationCard">
+            <div class="card-header">
+                <div class="success-icon" id="successIcon">
+                    <div class="checkmark">
+                        <div class="checkmark-circle"></div>
+                        <div class="checkmark-stem"></div>
+                        <div class="checkmark-kick"></div>
+                    </div>
+                </div>
+                <h1 class="fade-in-text">Order Confirmed!</h1>
+                <p class="fade-in-text">Your order has been successfully placed</p>
+            </div>
+            
+            <div class="order-details" id="orderDetails">
+                <div class="detail-section fade-in-section">
+                    <div class="section-header">
+                        <i class="fas fa-clipboard-list section-icon"></i>
+                        <h3>Order Information</h3>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-hashtag"></i>
+                            Order ID:
+                        </span>
+                        <span class="value" id="orderId">#ORD-2024-001</span>
+                    </div>
+                </div>
+
+                <div class="detail-section fade-in-section">
+                    <div class="section-header">
+                        <i class="fas fa-user section-icon"></i>
+                        <h3>Customer Details</h3>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-user-tag"></i>
+                            Name:
+                        </span>
+                        <span class="value" id="customerName">John Doe</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Location:
+                        </span>
+                        <span class="value" id="customerLocation">26.9124, 75.7873</span>
+                    </div>
+                </div>
+
+                <div class="detail-section fade-in-section">
+                    <div class="section-header">
+                        <i class="fas fa-box section-icon"></i>
+                        <h3>Product Information</h3>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-shopping-bag"></i>
+                            Product:
+                        </span>
+                        <span class="value" id="productName">Laptop</span>
+                    </div>
+                </div>
+
+                <div class="detail-section fade-in-section">
+                    <div class="section-header">
+                        <i class="fas fa-store section-icon"></i>
+                        <h3>Assigned Seller</h3>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-building"></i>
+                            Seller Name:
+                        </span>
+                        <span class="value" id="sellerName">TechHub Electronics</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Seller Location:
+                        </span>
+                        <span class="value" id="sellerLocation">26.9200, 75.7900</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-route"></i>
+                            Distance:
+                        </span>
+                        <span class="value distance-badge" id="distance">1.2 KM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left btn-icon"></i>
+                    <span>Place Another Order</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Success animation
+            setTimeout(() => {
+                document.getElementById('successIcon').classList.add('animate');
+            }, 500);
+
+            // Fade in sections with stagger
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add('animate');
+                }, 1000 + (index * 200));
+            });
+
+            // Fade in text elements
+            const textElements = document.querySelectorAll('.fade-in-text');
+            textElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('animate');
+                }, 800 + (index * 200));
+            });
+
+            // Back button animation
+            const backBtn = document.getElementById('backBtn');
+            backBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 150);
+            });
+
+            // Load order details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.get('orderId')) {
+                document.getElementById('orderId').textContent = '#' + urlParams.get('orderId');
+            }
+            if (urlParams.get('customerName')) {
+                document.getElementById('customerName').textContent = urlParams.get('customerName');
+            }
+            if (urlParams.get('customerLocation')) {
+                document.getElementById('customerLocation').textContent = urlParams.get('customerLocation');
+            }
+            if (urlParams.get('productName')) {
+                document.getElementById('productName').textContent = urlParams.get('productName');
+            }
+            if (urlParams.get('sellerName')) {
+                document.getElementById('sellerName').textContent = urlParams.get('sellerName');
+            }
+            if (urlParams.get('sellerLocation')) {
+                document.getElementById('sellerLocation').textContent = urlParams.get('sellerLocation');
+            }
+            if (urlParams.get('distance')) {
+                document.getElementById('distance').textContent = urlParams.get('distance') + ' KM';
+            }
+        });
+    </script>
+</body>
+</html>

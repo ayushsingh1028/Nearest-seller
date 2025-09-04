@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest Seller App - Place Order</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+        <div class="gradient-orb orb1"></div>
+        <div class="gradient-orb orb2"></div>
+        <div class="gradient-orb orb3"></div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store logo-icon"></i>
+                <h2>NearSeller</h2>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">
+                    <span>Place Order</span>
+                    <div class="nav-underline"></div>
+                </a>
+                <a href="#" class="nav-link">
+                    <span>Admin</span>
+                    <div class="nav-underline"></div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="form-card">
+            <div class="card-header">
+                <h1>Place Your Order</h1>
+                <p>Find the nearest seller for your products</p>
+            </div>
+            
+            <form id="orderForm" class="order-form">
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="fas fa-users input-icon"></i>
+                        <select id="existingCustomer" name="existingCustomer" class="form-input">
+                            <option value="">Select existing customer</option>
+                            <option value="john_doe">John Doe</option>
+                            <option value="jane_smith">Jane Smith</option>
+                            <option value="mike_johnson">Mike Johnson</option>
+                            <option value="sarah_wilson">Sarah Wilson</option>
+                        </select>
+                        <label class="floating-label">Existing Customer</label>
+                    </div>
+                </div>
+
+                <div class="form-divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="newCustomerName" name="newCustomerName" class="form-input" placeholder=" ">
+                        <label class="floating-label">New Customer Name</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-container">
+                            <i class="fas fa-map-marker-alt input-icon"></i>
+                            <input type="number" id="latitude" name="latitude" class="form-input" placeholder=" " step="any">
+                            <label class="floating-label">Latitude</label>
+                            <div class="tooltip">
+                                <i class="fas fa-question-circle tooltip-icon"></i>
+                                <div class="tooltip-content">
+                                    <p>Enter the latitude coordinate (e.g., 26.9124)</p>
+                                    <small>This helps us find your exact location</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <i class="fas fa-map-marker-alt input-icon"></i>
+                            <input type="number" id="longitude" name="longitude" class="form-input" placeholder=" " step="any">
+                            <label class="floating-label">Longitude</label>
+                            <div class="tooltip">
+                                <i class="fas fa-question-circle tooltip-icon"></i>
+                                <div class="tooltip-content">
+                                    <p>Enter the longitude coordinate (e.g., 75.7873)</p>
+                                    <small>This helps us find your exact location</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="fas fa-box input-icon"></i>
+                        <select id="product" name="product" class="form-input" required>
+                            <option value="">Select a product</option>
+                            <option value="laptop">Laptop</option>
+                            <option value="smartphone">Smartphone</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="headphones">Headphones</option>
+                            <option value="smartwatch">Smart Watch</option>
+                        </select>
+                        <label class="floating-label">Product</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Find Nearest Seller</span>
+                    <div class="btn-loader">
+                        <div class="loader"></div>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <div id="alertBox" class="alert-box">
+        <div class="alert-content">
+            <i class="fas fa-exclamation-circle alert-icon"></i>
+            <span id="alertMessage"></span>
+            <button id="alertClose" class="alert-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
