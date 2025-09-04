@@ -82,13 +82,14 @@ function updateOrderInformation(orderData) {
     productCategoryElement.textContent = productCategories[orderData.product] || 'General';
     
     // Seller information (use provided data or fallback to sample data)
-    const sellerInfo = orderData.sellerName ? {
-        name: orderData.sellerName,
-        location: orderData.sellerLocation || 'Near you',
-        distance: orderData.distance + ' KM' || '1.5 KM',
-        deliveryTime: calculateDeliveryTime(parseFloat(orderData.distance) || 1.5)
-    } : sellerData[orderData.product];
-    
+    // Seller information (use provided data or fallback to sample data)
+const sellerInfo = orderData.sellerName ? {
+    name: orderData.sellerName,
+    location: orderData.sellerLocation || 'Near you',
+    distance: orderData.distance ? orderData.distance + ' KM' : '1.5 KM',  // ✅ FIXED
+    deliveryTime: calculateDeliveryTime(parseFloat(orderData.distance) || 1.5)
+} : sellerData[orderData.product];
+
     sellerNameElement.textContent = sellerInfo.name;
     sellerLocationElement.textContent = sellerInfo.location;
     distanceElement.textContent = sellerInfo.distance;
