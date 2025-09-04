@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation - Nearest Seller App</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Order Confirmation - NearSeller</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="confirmation-styles.css">
 </head>
 <body>
     <div class="background">
@@ -23,11 +23,14 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-store logo-icon"></i>
-                <h2>NearSeller</h2>
+                <div>
+                    <h2>NearSeller</h2>
+                    <div class="logo-subtitle">Smart Commerce</div>
+                </div>
             </div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">
-                    <span>Place Order</span>
+                    <span>Dashboard</span>
                     <div class="nav-underline"></div>
                 </a>
                 <a href="#" class="nav-link">
@@ -49,7 +52,7 @@
                     </div>
                 </div>
                 <h1 class="fade-in-text">Order Confirmed!</h1>
-                <p class="fade-in-text">Your order has been successfully placed</p>
+                <p class="fade-in-text">Your order has been successfully placed and assigned to the nearest seller</p>
             </div>
             
             <div class="order-details" id="orderDetails">
@@ -64,6 +67,13 @@
                             Order ID:
                         </span>
                         <span class="value" id="orderId">#ORD-2024-001</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-calendar-alt"></i>
+                            Order Date:
+                        </span>
+                        <span class="value" id="orderDate">-</span>
                     </div>
                 </div>
 
@@ -84,7 +94,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             Location:
                         </span>
-                        <span class="value" id="customerLocation">26.9124, 75.7873</span>
+                        <span class="value" id="customerLocation">New York, NY</span>
                     </div>
                 </div>
 
@@ -99,6 +109,13 @@
                             Product:
                         </span>
                         <span class="value" id="productName">Laptop</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-tag"></i>
+                            Category:
+                        </span>
+                        <span class="value" id="productCategory">Electronics</span>
                     </div>
                 </div>
 
@@ -119,7 +136,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             Seller Location:
                         </span>
-                        <span class="value" id="sellerLocation">26.9200, 75.7900</span>
+                        <span class="value" id="sellerLocation">Manhattan, NY</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">
@@ -128,10 +145,63 @@
                         </span>
                         <span class="value distance-badge" id="distance">1.2 KM</span>
                     </div>
+                    <div class="detail-item">
+                        <span class="label">
+                            <i class="fas fa-clock"></i>
+                            Est. Delivery:
+                        </span>
+                        <span class="value delivery-badge" id="deliveryTime">30-45 mins</span>
+                    </div>
+                </div>
+
+                <div class="detail-section fade-in-section">
+                    <div class="section-header">
+                        <i class="fas fa-info-circle section-icon"></i>
+                        <h3>Order Status</h3>
+                    </div>
+                    <div class="status-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Order Placed</h4>
+                                <p>Your order has been confirmed</p>
+                                <small id="orderTime">Just now</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Processing</h4>
+                                <p>Seller is preparing your order</p>
+                                <small>Pending</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Out for Delivery</h4>
+                                <p>Order is on its way</p>
+                                <small>Pending</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Delivered</h4>
+                                <p>Order has been delivered</p>
+                                <small>Pending</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="action-buttons">
+                <button class="track-btn" id="trackBtn">
+                    <i class="fas fa-map-marker-alt btn-icon"></i>
+                    <span>Track Order</span>
+                    <div class="btn-glow"></div>
+                </button>
                 <button class="back-btn" id="backBtn">
                     <i class="fas fa-arrow-left btn-icon"></i>
                     <span>Place Another Order</span>
@@ -141,63 +211,6 @@
         </div>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Success animation
-            setTimeout(() => {
-                document.getElementById('successIcon').classList.add('animate');
-            }, 500);
-
-            // Fade in sections with stagger
-            const sections = document.querySelectorAll('.fade-in-section');
-            sections.forEach((section, index) => {
-                setTimeout(() => {
-                    section.classList.add('animate');
-                }, 1000 + (index * 200));
-            });
-
-            // Fade in text elements
-            const textElements = document.querySelectorAll('.fade-in-text');
-            textElements.forEach((element, index) => {
-                setTimeout(() => {
-                    element.classList.add('animate');
-                }, 800 + (index * 200));
-            });
-
-            // Back button animation
-            const backBtn = document.getElementById('backBtn');
-            backBtn.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 150);
-            });
-
-            // Load order details from URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            if (urlParams.get('orderId')) {
-                document.getElementById('orderId').textContent = '#' + urlParams.get('orderId');
-            }
-            if (urlParams.get('customerName')) {
-                document.getElementById('customerName').textContent = urlParams.get('customerName');
-            }
-            if (urlParams.get('customerLocation')) {
-                document.getElementById('customerLocation').textContent = urlParams.get('customerLocation');
-            }
-            if (urlParams.get('productName')) {
-                document.getElementById('productName').textContent = urlParams.get('productName');
-            }
-            if (urlParams.get('sellerName')) {
-                document.getElementById('sellerName').textContent = urlParams.get('sellerName');
-            }
-            if (urlParams.get('sellerLocation')) {
-                document.getElementById('sellerLocation').textContent = urlParams.get('sellerLocation');
-            }
-            if (urlParams.get('distance')) {
-                document.getElementById('distance').textContent = urlParams.get('distance') + ' KM';
-            }
-        });
-    </script>
+    <script src="confirmation-script.js"></script>
 </body>
 </html>

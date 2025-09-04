@@ -3,141 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nearest Seller App - Place Order</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>NearSeller - Professional Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="shape shape4"></div>
-        <div class="gradient-orb orb1"></div>
-        <div class="gradient-orb orb2"></div>
-        <div class="gradient-orb orb3"></div>
-    </div>
+    <div class="background"></div>
     
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-store logo-icon"></i>
-                <h2>NearSeller</h2>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link active">
-                    <span>Place Order</span>
-                    <div class="nav-underline"></div>
-                </a>
-                <a href="#" class="nav-link">
-                    <span>Admin</span>
-                    <div class="nav-underline"></div>
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <div class="form-card">
-            <div class="card-header">
-                <h1>Place Your Order</h1>
-                <p>Find the nearest seller for your products</p>
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-content">
+                    <i class="fas fa-store logo-icon"></i>
+                    <div>
+                        <div class="logo-text">NearSeller</div>
+                        <div class="logo-subtitle">Smart Commerce</div>
+                    </div>
+                </div>
             </div>
             
-            <form id="orderForm" class="order-form">
-                <div class="form-group">
-                    <div class="input-container">
-                        <i class="fas fa-users input-icon"></i>
-                        <select id="existingCustomer" name="existingCustomer" class="form-input">
-                            <option value="">Select existing customer</option>
-                            <option value="john_doe">John Doe</option>
-                            <option value="jane_smith">Jane Smith</option>
-                            <option value="mike_johnson">Mike Johnson</option>
-                            <option value="sarah_wilson">Sarah Wilson</option>
-                        </select>
-                        <label class="floating-label">Existing Customer</label>
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-title">Main Menu</div>
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-home nav-icon"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-shopping-cart nav-icon"></i>
+                        Place Order
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-list-alt nav-icon"></i>
+                        Order History
+                        <span class="nav-badge">12</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">Management</div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-store nav-icon"></i>
+                        Sellers
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-users nav-icon"></i>
+                        Customers
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-box nav-icon"></i>
+                        Products
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-map-marked-alt nav-icon"></i>
+                        Locations
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">Analytics</div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-bar nav-icon"></i>
+                        Reports
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                        Analytics
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-clock nav-icon"></i>
+                        Activity Log
+                        <span class="nav-badge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">System</div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-cog nav-icon"></i>
+                        Settings
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-life-ring nav-icon"></i>
+                        Support
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        JD
+                    </div>
+                    <div class="user-info">
+                        <h4>John Doe</h4>
+                        <p>Administrator</p>
                     </div>
                 </div>
-
-                <div class="form-divider">
-                    <span>OR</span>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1 class="header-title">Dashboard Overview</h1>
+                <div class="header-actions">
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-plus"></i>
+                        New Order
+                    </a>
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </a>
                 </div>
-
-                <div class="form-group">
-                    <div class="input-container">
-                        <i class="fas fa-user input-icon"></i>
-                        <input type="text" id="newCustomerName" name="newCustomerName" class="form-input" placeholder=" ">
-                        <label class="floating-label">New Customer Name</label>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <div class="input-container">
-                            <i class="fas fa-map-marker-alt input-icon"></i>
-                            <input type="number" id="latitude" name="latitude" class="form-input" placeholder=" " step="any">
-                            <label class="floating-label">Latitude</label>
-                            <div class="tooltip">
-                                <i class="fas fa-question-circle tooltip-icon"></i>
-                                <div class="tooltip-content">
-                                    <p>Enter the latitude coordinate (e.g., 26.9124)</p>
-                                    <small>This helps us find your exact location</small>
-                                </div>
+            </header>
+            
+            <div class="content-area">
+                <div class="form-card">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">
+                                <i class="fas fa-shopping-cart"></i>
                             </div>
+                            <div class="stat-value">145</div>
+                            <div class="stat-label">Total Orders</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Active Sellers</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: rgba(236, 72, 153, 0.2); color: #ec4899;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-value">89</div>
+                            <div class="stat-label">Customers</div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-container">
-                            <i class="fas fa-map-marker-alt input-icon"></i>
-                            <input type="number" id="longitude" name="longitude" class="form-input" placeholder=" " step="any">
-                            <label class="floating-label">Longitude</label>
-                            <div class="tooltip">
-                                <i class="fas fa-question-circle tooltip-icon"></i>
-                                <div class="tooltip-content">
-                                    <p>Enter the longitude coordinate (e.g., 75.7873)</p>
-                                    <small>This helps us find your exact location</small>
-                                </div>
+                    
+                    <div class="card-header">
+                        <h1>Place Your Order</h1>
+                        <p>Find the nearest seller for your products</p>
+                    </div>
+                    
+                    <form class="order-form" id="orderForm">
+                        <div class="form-group">
+                            <div class="input-container">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" class="form-input" id="customerName" placeholder="Customer Name" required>
                             </div>
                         </div>
-                    </div>
+                        
+                        <div class="form-group">
+                            <div class="input-container">
+                                <i class="fas fa-map-marker-alt input-icon"></i>
+                                <input type="text" class="form-input" id="customerLocation" placeholder="Customer Location" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="input-container">
+                                <i class="fas fa-box input-icon"></i>
+                                <select class="form-input" id="productSelect" required>
+                                    <option value="">Select Product</option>
+                                    <option value="laptop">Laptop</option>
+                                    <option value="smartphone">Smartphone</option>
+                                    <option value="tablet">Tablet</option>
+                                    <option value="headphones">Headphones</option>
+                                    <option value="smartwatch">Smart Watch</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-search"></i>
+                            <span class="btn-text">Find Nearest Seller</span>
+                            <div class="btn-loader">
+                                <div class="loader"></div>
+                            </div>
+                        </button>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <div class="input-container">
-                        <i class="fas fa-box input-icon"></i>
-                        <select id="product" name="product" class="form-input" required>
-                            <option value="">Select a product</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="smartphone">Smartphone</option>
-                            <option value="tablet">Tablet</option>
-                            <option value="headphones">Headphones</option>
-                            <option value="smartwatch">Smart Watch</option>
-                        </select>
-                        <label class="floating-label">Product</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <span class="btn-text">Find Nearest Seller</span>
-                    <div class="btn-loader">
-                        <div class="loader"></div>
-                    </div>
-                </button>
-            </form>
-        </div>
-    </main>
-
-    <div id="alertBox" class="alert-box">
-        <div class="alert-content">
-            <i class="fas fa-exclamation-circle alert-icon"></i>
-            <span id="alertMessage"></span>
-            <button id="alertClose" class="alert-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
+    <script src="confirmation-script.js"></script>
 </body>
 </html>
