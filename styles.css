@@ -635,3 +635,27 @@ body {
         font-size: 0.9rem;
     }
 }
+/* Sidebar user profile fix */
+.sidebar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+    min-width: 0; /* allow shrinking */
+}
+
+.sidebar .user-info span {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* show "John..." instead of breaking */
+    max-width: 120px; /* adjust width for mobile */
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .sidebar .user-info span {
+        font-size: 0.8rem;
+        max-width: 90px;
+    }
+}
