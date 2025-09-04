@@ -227,14 +227,14 @@ function processOrder(formData) {
     const orderId = generateOrderId();
     
     // Show success message
-    showNotification('Order placed successfully! Redirecting...', 'success');
+    showNotification('Order placed successfully!', 'success');
     
     // Update stats (simulate)
     updateOrderStats();
     
     // Reset form
     orderForm.reset();
-
+    
     console.log('Order processed:', {
         orderId,
         customer: formData.customerName,
@@ -242,21 +242,7 @@ function processOrder(formData) {
         product: formData.product,
         seller: nearestSeller.name
     });
-
-    // ✅ Redirect to confirmation page with details
-    const params = new URLSearchParams({
-        orderId,
-        customerName: formData.customerName,
-        customerLocation: formData.customerLocation,
-        product: formData.product,
-        sellerName: nearestSeller.name
-    });
-
-    setTimeout(() => {
-        window.location.href = `confirmation.html?${params.toString()}`;
-    }, 1500); // delay for notification
 }
-
 
 function generateOrderId() {
     return `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
