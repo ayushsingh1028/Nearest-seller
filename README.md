@@ -1,3 +1,11 @@
+<img width="1919" height="1072" alt="Screenshot 2025-09-05 031633" src="https://github.com/user-attachments/assets/3eefb47c-7ece-4209-ab0c-a1e35b460cf6" />
+<img width="1919" height="1070" alt="Screenshot 2025-09-05 031652" src="https://github.com/user-attachments/assets/ecdd8429-6031-4769-871d-9425ef3f384d" />
+<img width="971" height="1071" alt="Screenshot 2025-09-05 031802" src="https://github.com/user-attachments/assets/afdaa3a1-7041-44a7-be97-d48dadb93ec8" />
+<img width="1032" height="1056" alt="Screenshot 2025-09-05 031823" src="https://github.com/user-attachments/assets/9d7a3272-3fb0-4670-b663-9b02f08da5f5" />
+
+
+
+
 # Nearest Seller
 
 A PHP & MySQL-based web application to find the nearest sellers for users.
