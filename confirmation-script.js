@@ -83,12 +83,18 @@ function updateOrderInformation(orderData) {
     
     // Seller information (use provided data or fallback to sample data)
     // Seller information (use provided data or fallback to sample data)
+const randomDistance = (Math.random() * 4 + 1).toFixed(1); // 1.0–5.0 km
+
 const sellerInfo = orderData.sellerName ? {
     name: orderData.sellerName,
     location: orderData.sellerLocation || 'Near you',
-    distance: orderData.distance ? orderData.distance + ' KM' : '1.5 KM',  // ✅ FIXED
-    deliveryTime: calculateDeliveryTime(parseFloat(orderData.distance) || 1.5)
-} : sellerData[orderData.product];
+    distance: orderData.distance ? orderData.distance + ' KM' : randomDistance + ' KM',
+    deliveryTime: calculateDeliveryTime(orderData.distance ? parseFloat(orderData.distance) : parseFloat(randomDistance))
+} : {
+    ...sellerData[orderData.product],
+    distance: randomDistance + ' KM',
+    deliveryTime: calculateDeliveryTime(parseFloat(randomDistance))
+};
 
     sellerNameElement.textContent = sellerInfo.name;
     sellerLocationElement.textContent = sellerInfo.location;
