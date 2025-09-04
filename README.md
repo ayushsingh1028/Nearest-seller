@@ -39,8 +39,7 @@ $user = "root";
 $pass = "your_password";
 $db   = "nearest_seller";
 
-
-Folder Structure
+## Folder Structure
 nearest_seller/
 │
 ├── admin/                  # Admin portal pages (login.php, dashboard.php)
@@ -53,6 +52,7 @@ nearest_seller/
 └── README.md
 
 
+## Database Setup (SQL)
 sql-
 CREATE DATABASE nearest_seller;
 
@@ -103,6 +103,8 @@ CREATE TABLE orders (
     FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (seller_id) REFERENCES sellers(id)
 );
+
+
 
 
 Author
