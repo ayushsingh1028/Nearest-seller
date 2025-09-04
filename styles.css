@@ -211,6 +211,7 @@ body {
     padding: 0 2rem;
 }
 
+/* Sidebar User Profile Fix */
 .user-profile {
     display: flex;
     align-items: center;
@@ -219,36 +220,27 @@ body {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-}
-
-.user-profile:hover {
-    background: rgba(0, 0, 0, 0.6);
-    transform: translateY(-2px);
+    overflow: hidden;   /* prevent breaking */
 }
 
 .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    flex-shrink: 0;   /* ✅ avatar will never shrink */
+}
+
+.user-info {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    color: white;
-    margin-right: 1rem;
+    flex-direction: column;
+    min-width: 0;   /* ✅ enables ellipsis */
+    overflow: hidden;
 }
 
-.user-info h4 {
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
+.user-info h4,
 .user-info p {
-    color: #9ca3af;
-    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  /* ✅ adds "..." if text is too long */
 }
+
 
 /* Main Content Area */
 .main-content {
@@ -633,29 +625,5 @@ body {
     .action-btn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
-    }
-}
-/* Sidebar user profile fix */
-.sidebar .user-info {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: nowrap;
-    min-width: 0; /* allow shrinking */
-}
-
-.sidebar .user-info span {
-    font-size: 0.9rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* show "John..." instead of breaking */
-    max-width: 120px; /* adjust width for mobile */
-}
-
-/* Extra small devices */
-@media (max-width: 480px) {
-    .sidebar .user-info span {
-        font-size: 0.8rem;
-        max-width: 90px;
     }
 }
