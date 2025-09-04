@@ -211,7 +211,6 @@ body {
     padding: 0 2rem;
 }
 
-/* Sidebar User Profile Fix */
 .user-profile {
     display: flex;
     align-items: center;
@@ -220,27 +219,36 @@ body {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-    overflow: hidden;   /* prevent breaking */
+}
+
+.user-profile:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
 }
 
 .user-avatar {
-    flex-shrink: 0;   /* ✅ avatar will never shrink */
-}
-
-.user-info {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     display: flex;
-    flex-direction: column;
-    min-width: 0;   /* ✅ enables ellipsis */
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    margin-right: 1rem;
 }
 
-.user-info h4,
+.user-info h4 {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .user-info p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;  /* ✅ adds "..." if text is too long */
+    color: #9ca3af;
+    font-size: 0.8rem;
 }
-
 
 /* Main Content Area */
 .main-content {
